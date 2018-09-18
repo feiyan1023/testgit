@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">aaa</button>
+    <div id="box">bbb</div>
+    <script>
+        var t=0;
+        box.addEventListener("touchstart",()=>{
+            console.log("start touch");
+            t=new Date().getTime();
+        })
+        box.addEventListener("click",()=>{
+            console.log("click....");
+            // console.log(new Date().getTime()-t);
+            btn.innerHTML=new Date().getTime()-t;
+        })
+
+    
+    </script>
+</body>
+</html>  
