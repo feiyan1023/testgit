@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{font-size:50px;}
+        #box{position: relative;left: 0;top: 0;width:4rem;height: 4rem;background: #eee; overflow: hidden;}
+        #img{position: absolute;left:0;top:0;display: block;width:1.5rem;height:1.5rem; background: #000;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img id="img" src="1.png" alt="">
+    </div>
+    <script>
+        var img = document.getElementById('img');
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        var endTouchY = 0;
+        var endTouchX = 0;
+        img.addEventListener('touchstart',function(ev){
+            console.log(winWidth,winHeight,ev.pageX,ev.pageY);
+            this.addEventListener('touchmove', function(ev){
+                ev.preventDefault();
+                console.log(ev.pageX,ev.pageY);
+                var ev = ev.touches[0];
+                img.style.top = (ev.pageY-75)+'px';
+                img.style.left = (ev.pageX-75)+'px';
+                endTouchX = ev.pageX;
+                endTouchY = ev.pageY;
+            },false);
+            this.addEventListener('touchend', function(ev){
+                this.ontouchmove = null;
+                this.ontouchend = null;
+                var x = (endTouchX-75)>0?(endTouchX-75):0;
+                var y = (endTouchY-75)>0?(endTouchY-75):0;
+                x = (x>(winWidth-150))?(winWidth-150):x;
+                y = (y>(winHeight-150))?(winHeight-150):y;
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
+            },false);
+        },false);
+    </script>
+</body>
+</html>
